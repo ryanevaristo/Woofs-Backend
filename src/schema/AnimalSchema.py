@@ -1,16 +1,13 @@
-from pickle import TRUE
-import string
-from tokenize import String
 from pydantic import BaseModel, ValidationError, validator
+from typing import Optional
 
 class Animal(BaseModel):
-    id: int
-    nome: string
-    sexo: string
-    raca: string
-    idade: string
-    vacinacao: string = None
-    validacao_vacina: bool
+    nome: str
+    sexo: str
+    raca: str
+    idade: str
+    vacinacao: str = None
+    validacao_vacina: bool = None
     ##id_usuario = int
 
     class Config:
