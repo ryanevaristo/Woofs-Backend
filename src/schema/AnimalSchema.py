@@ -8,7 +8,7 @@ class Animal(BaseModel):
     idade: str
     vacinacao: str = None
     validacao_vacina: bool = None
-    ##id_usuario = int
+    id_usuario: int
 
     class Config:
         orm_mode = True
