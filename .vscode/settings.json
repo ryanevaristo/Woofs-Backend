@@ -1,6 +1,7 @@
 {
     "python.analysis.extraPaths": [
         "./src/models",
-        "./src/schema"
+        "./src/schema",
+        "./src/database"
     ]
 }
