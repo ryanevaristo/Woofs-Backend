@@ -1,10 +1,10 @@
 from typing import Optional
 from sqlalchemy.orm import Session
 
-#from service import ServiceInterface
+from services.service import ServiceInterface
 from models.Animal import Animal as ModelAnimal
 
-class Animal():
+class Animal(ServiceInterface):
     def __init__(self, db: Session):
         self.db = db
     def criar(self, animal: ModelAnimal):

@@ -5,12 +5,13 @@ from models.Animal import Animal as ModelAnimal
 from sqlalchemy.orm import Session
 from database import db
 from services.AnimalService import Animal as ServiceAnimal
+import asyncio
 
 router = APIRouter()
 
 @router.post("/animal/", response_model=SchemaAnimal)
-def create_animal(animal: SchemaAnimal, db: Session = Depends(db.get_db)):
-    db_animal = ModelAnimal(nome=animal.nome, sexo=animal.sexo,
+async def create_animal(animal: SchemaAnimal, db: Session = Depends(db.get_db)):
+    db_animal =  ModelAnimal(nome=animal.nome, sexo=animal.sexo,
                              raca=animal.raca, idade=animal.idade,
                              vacinacao=animal.vacinacao,
                              validacao_vacina=animal.validacao_vacina,
