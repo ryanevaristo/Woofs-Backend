@@ -2,33 +2,33 @@ from fastapi import APIRouter, Depends
 from models.Usuario import Usuario
 from schema.AnimalSchema import Animal as SchemaAnimal
 from models.Animal import Animal as ModelAnimal
-from sqlalchemy.orm import Session
-from database import db
+from sqlalchemy.ext.asyncio import AsyncSession
+from database.db import get_db
 from services.AnimalService import Animal as ServiceAnimal
 
 router = APIRouter()
 
 @router.post("/animal/", response_model=SchemaAnimal)
-def create_animal(animal: SchemaAnimal, db: Session = Depends(db.get_db)):
-    db_animal = ModelAnimal(nome=animal.nome, sexo=animal.sexo,
-                             raca=animal.raca, idade=animal.idade,
-                             vacinacao=animal.vacinacao,
-                             validacao_vacina=animal.validacao_vacina,
-                             id_usuario=animal.id_usuario
-                             )
-    service = ServiceAnimal(db)
-    return service.criar(db_animal)
+async def create_animal(animal: SchemaAnimal, dbSession: AsyncSession = Depends(get_db)):
+        db_animal = ModelAnimal(nome=animal.nome, sexo=animal.sexo,
+                        raca=animal.raca, idade=animal.idade,
+                        vacinacao=animal.vacinacao,
+                        validacao_vacina=animal.validacao_vacina,
+                        id_usuario=animal.id_usuario
+                    )
+        service = ServiceAnimal(dbSession)
+        return await service.criar(db_animal)
     
 
 @router.get("/animal/")
-def get_animal(db: Session = Depends(db.get_db)):
-    service = ServiceAnimal(db)
-    return service.listar()
+async def get_animal(dbSession: AsyncSession = Depends(get_db)):
+    service = ServiceAnimal(dbSession)
+    return await service.listar()
     #animal = db.query(ModelAnimal).all()
     #return animal
 
 
 @router.get("/animal/{id}")
-def get_animalId(id: int, db: Session = Depends(db.get_db)):
-    service = ServiceAnimal(db)
-    return service.listar(id)
+async def get_animalId(id: int, dbSession: AsyncSession = Depends(get_db)):
+    service = ServiceAnimal(dbSession)
+    return await service.listar(id)

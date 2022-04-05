@@ -1,19 +1,18 @@
 from typing import Optional
 from sqlalchemy.orm import Session
-
+from sqlalchemy import update
+from sqlalchemy.future import select
 #from service import ServiceInterface
 from models.Animal import Animal as ModelAnimal
 
 class Animal():
     def __init__(self, db: Session):
         self.db = db
-    def criar(self, animal: ModelAnimal):
+    async def criar(self, animal: ModelAnimal):
         self.db.add(animal)
-        self.db.commit()
-        self.db.refresh(animal)
-        return animal
+        await self.db.flush()
 
-    def atualizar(self,  animal: ModelAnimal):
+    async def atualizar(self,  animal: ModelAnimal):
         animalAtualizar = self.db.query(ModelAnimal).get(animal.id)
         animalAtualizar.nome = animal.nome
         animalAtualizar.raca = animal.raca
@@ -21,14 +20,13 @@ class Animal():
         animalAtualizar.idade = animal.idade
         animalAtualizar.vacinacao = animal.vacinacao
         animalAtualizar.validacao_vacina = animal.validacao_vacina
-
-        self.db.commit()
+        await self.db.commit()
         return animalAtualizar
     
-    def listar(self, id: Optional[int]):
+    async def listar(self, id: Optional[int]):
         return super().listar()
     
-    def remover(self, id: int):
+    async def remover(self, id: int):
         return super().remover()
     
    

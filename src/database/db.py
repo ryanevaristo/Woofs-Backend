@@ -1,20 +1,34 @@
 import os
-
-from sqlalchemy import create_engine
+from click import echo
+from typing import AsyncGenerator
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from fastapi import HTTPException
+from sqlalchemy.exc import SQLAlchemyError
 from dotenv import dotenv_values
 config = dotenv_values('.env')
 SQLALCHEMY_DATABASE_URL = config['DATABASE_UR']
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+engine = create_async_engine(SQLALCHEMY_DATABASE_URL, future=True, echo=True)
 
 Base = declarative_base()
 
 
-def get_db():
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
+async def get_db() -> AsyncGenerator:
+    asyncsession = sessionmaker(
+        expire_on_commit=False,
+         class_=AsyncSession,
+          bind=engine
+    )
+    async with asyncsession() as session:
+        try:
+            yield session
+            await session.commit()
+        except SQLAlchemyError as sql_ex:
+            await session.rollback()
+            raise sql_ex
+        except HTTPException as http_ex:
+            await session.rollback()
+            raise http_ex
+        finally:
+            await session.close()

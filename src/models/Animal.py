@@ -16,8 +16,8 @@ class Animal(Base):
     idade = Column(String(2), nullable=False)
     vacinacao = Column(String(200))
     validacao_vacina = Column(Boolean)
-    #id_usuario = Column(Integer, ForeignKey('Usuario.id'))
-    id_usuario = Column(String, ForeignKey('Usuario.nome'))
+    id_usuario = Column(Integer, ForeignKey('Usuario.id'))
+    #id_usuario = Column(String, ForeignKey('Usuario.nome'))
     usuario = relationship("Usuario")
     
     def __repr__(self) -> str:

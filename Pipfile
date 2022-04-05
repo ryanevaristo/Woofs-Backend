@@ -8,9 +8,9 @@ fastapi = "*"
 fastapi-sqlalchemy = "*"
 pydantic = "*"
 alembic = "*"
-psycopg2 = "*"
 uvicorn = "*"
 python-dotenv = "*"
+asyncpg = "*"
 
 [dev-packages]
 
