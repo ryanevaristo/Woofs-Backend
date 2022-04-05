@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import os
 from dotenv import load_dotenv
-from routes import AnimalRoutes
+from routes import AnimalRoutes, UsuarioRoutes
 
 
 load_dotenv('.env')
@@ -25,21 +25,9 @@ app.add_middleware(
 )
 
 app.include_router(AnimalRoutes.router)
+app.include_router(UsuarioRoutes.router)
 #app.add_middleware(DBSessionMiddleware, db_url=os.environ['DATABASE_URL'])
 
-@app.get("/")
-def read_root():
-    return {"User": "Teste"}
-
-@app.get("/item/{id}}")
-def read_user(id:int, q: bool | None = None):
-    return {"id": id, "q": q}
-
-@app.get("/user/")
-def read_user(id:int = 0):
-    if(id == 0):
-        return {"users": []}
-    return {"id": id}
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=8000)
