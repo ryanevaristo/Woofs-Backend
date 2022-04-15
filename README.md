@@ -30,13 +30,13 @@ Funcionalidades Futuras:
 
 
 Requisitos Técnicos:
-    Migrations Enviroments: Alembic
-        scripts: 
-                alembic upgrade head,
-                alembic revision -m "Add a column"
-        mais sobre: https://alembic.sqlalchemy.org/en/latest/tutorial.html
-    serviço: Restfull
-    framework: Fastapi
-    scripts: uvicorn main:app --reload
+    - Migrations Enviroments: Alembic
+        - scripts: 
+                - alembic upgrade head,
+                - alembic revision -m "Add a column"
+        - mais sobre: https://alembic.sqlalchemy.org/en/latest/tutorial.html
+     - serviço: Restfull
+    - framework: Fastapi
+    - scripts: uvicorn main:app --reload
     
     
