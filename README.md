@@ -27,3 +27,16 @@ Funcionalidades Futuras:
 - Desconto para cruzamentos no Petshop []
 
 - Disponibilizar Petshops mais próximos aos usuários []
+
+
+Requisitos Técnicos:
+    Migrations Enviroments: Alembic
+        scripts: 
+                alembic upgrade head,
+                alembic revision -m "Add a column"
+        mais sobre: https://alembic.sqlalchemy.org/en/latest/tutorial.html
+    serviço: Restfull
+    framework: Fastapi
+    scripts: uvicorn main:app --reload
+    
+    
