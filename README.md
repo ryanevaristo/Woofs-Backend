@@ -29,14 +29,15 @@ Funcionalidades Futuras:
 - Disponibilizar Petshops mais próximos aos usuários []
 
 
-Requisitos Técnicos: [] 
-    - Migrations Enviroments: Alembic []
-        - scripts: []
-                - alembic upgrade head, []
-                - alembic revision -m "Add a column" []
-        - mais sobre: https://alembic.sqlalchemy.org/en/latest/tutorial.html []
-     - serviço: Restfull []
-    - framework: Fastapi []
-    - scripts: uvicorn main:app --reload []
-    
+<dl> 
+    <dt>Requisitos Técnicos: </dt>
+    <dt>- Migrations Enviroments: Alembic</dt> 
+            <dt> - scripts: </dt>
+             <dd>- alembic upgrade head <dd>
+              <dd>  - alembic revision -m "Add a column" <dd>
+        <dt>- mais sobre: https://alembic.sqlalchemy.org/en/latest/tutorial.html </dt
+     <dt> - serviço: Restfull </dt>
+   <dt> - framework: Fastapi </dt>
+   <dt> - scripts: uvicorn main:app --reload </dt>
+ </dl>   
     
