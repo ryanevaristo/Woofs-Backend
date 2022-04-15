@@ -1,3 +1,4 @@
+from fastapi import FastAPI
 from sqlalchemy import Boolean, Column, DateTime, Integer, ForeignKey, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -11,6 +12,7 @@ class Animal(Base):
 
     id = Column(Integer, primary_key =True, autoincrement=True, index=True)
     nome = Column(String(50), nullable=False)
+    especie = Column(String(100), nullable =False)
     sexo = Column(String(1), nullable=False)
     raca = Column(String(30), nullable=False)
     idade = Column(String(2), nullable=False)
@@ -21,4 +23,4 @@ class Animal(Base):
     usuario = relationship("Usuario")
     
     def __repr__(self) -> str:
-        return super().__repr__(f"id={self.id}, nome={self.nome}, sexo={self.sexo}, idade={self.idade}, vacinacao={self.vacinacao}, validacao_vacinacao={self.vacinacao}, id_usuario={self.id_usuario}")
+        return super().__repr__(f"id={self.id}, nome={self.nome}, especie={self.especie} sexo={self.sexo}, idade={self.idade}, vacinacao={self.vacinacao}, validacao_vacinacao={self.vacinacao}, id_usuario={self.id_usuario}")

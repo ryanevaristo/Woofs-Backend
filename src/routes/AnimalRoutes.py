@@ -12,22 +12,13 @@ router = APIRouter()
 
 @router.post("/animal/", response_model=SchemaAnimal)
 async def create_animal(animal: SchemaAnimal, dbSession: AsyncSession = Depends(get_db)):
-        db_animal = ModelAnimal(nome=animal.nome, sexo=animal.sexo,
-                        raca=animal.raca, idade=animal.idade,
-                        vacinacao=animal.vacinacao,
-                        validacao_vacina=animal.validacao_vacina,
-                        id_usuario=animal.id_usuario
-                    )
         service = ServiceAnimal(dbSession)
-        return await service.criar(db_animal)
+        return await service.criar(animal)
     
-
 @router.put("/animal/{id}", response_model=SchemaAnimal)
 async def get_animal(id: int, animal: SchemaAnimal, dbSession: AsyncSession = Depends(get_db)):
     service = ServiceAnimal(dbSession)
     return await service.atualizar(animal, id)
-
-
 
 @router.get("/animal/")
 async def get_animalId(id: Optional[int] = None, dbSession: AsyncSession = Depends(get_db)):

@@ -9,8 +9,15 @@ from schema.AnimalSchema import Animal as SchemaAnimal
 class Animal():
     def __init__(self, db: Session):
         self.db = db
-    async def criar(self, animal: ModelAnimal):
-        self.db.add(animal)
+    async def criar(self, animal: SchemaAnimal):
+        db_animal = ModelAnimal(nome=animal.nome, 
+                        especie=animal.especie, sexo=animal.sexo,
+                        raca=animal.raca, idade=animal.idade,
+                        vacinacao=animal.vacinacao,
+                        validacao_vacina=animal.validacao_vacina,
+                        id_usuario=animal.id_usuario
+                    )
+        self.db.add(db_animal)
         await self.db.flush()
 
     async def atualizar(self,  animal: SchemaAnimal, id: int):
@@ -20,8 +27,6 @@ class Animal():
             .values(**animal.dict())
             .execution_options(synchronize_session="fetch")
         )
-        #.values(nome = animal.nome).execution_options(synchronize_session="fetch")
-        print(animalAtualizar)
         await self.db.execute(animalAtualizar)
 
         return animal.dict()

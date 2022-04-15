@@ -15,6 +15,7 @@ class AnimalID(BaseModel):
         orm_mode = True
 class Animal(BaseModel):
     nome: str
+    especie: str
     sexo: str
     raca: str
     idade: str

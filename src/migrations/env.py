@@ -7,18 +7,19 @@ from sqlalchemy.ext.asyncio import AsyncEngine
 
 from alembic import context
 
+
 import os,sys
 from dotenv import load_dotenv
 from base import Base
 BASE_DIR= os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 sys.path.append(BASE_DIR)
+
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-
-config.set_main_option('sqlalchemy.url', os.environ['DATABASE_UR'])
-
+config.set_main_option('sqlalchemy.url', os.environ.get("DATABASE_UR"))
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:
@@ -28,9 +29,11 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
+from base import Base
 from models.Localidade import Localidade
 from models.Usuario import Usuario
 from models.Animal import Animal
+
 
 target_metadata = Base.metadata
 
