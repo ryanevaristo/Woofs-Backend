@@ -34,7 +34,7 @@ Funcionalidades Futuras:
 <dl> 
     <dt> - Migrations Enviroments: Alembic - scripts: </dt>
         <dd> - alembic upgrade head <dd>
-        <dd>  - alembic revision -m "Add a column" <dd>
+        <dd>  - alembic revision --autogenerate -m "Add a column" <dd>
     <dt> - mais sobre:<a href="https://alembic.sqlalchemy.org/en/latest/tutorial.html"> link<a> </dt
     <dt> - serviço: Api Restfull </dt>
     <dt> - framework: Fastapi </dt>
