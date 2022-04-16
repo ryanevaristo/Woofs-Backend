@@ -1,12 +1,12 @@
 from typing import Optional
-from fastapi import Query
 from sqlalchemy.orm import Session
 from sqlalchemy import update, delete
 from sqlalchemy.future import select
-#from service import ServiceInterface
+from .service import ServiceInterface
 from models.Animal import Animal as ModelAnimal
 from schema.AnimalSchema import Animal as SchemaAnimal
-class Animal():
+
+class Animal(ServiceInterface):
     def __init__(self, db: Session):
         self.db = db
     async def criar(self, animal: SchemaAnimal):

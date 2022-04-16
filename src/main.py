@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import os
 from dotenv import load_dotenv
-from routes import AnimalRoutes
+from routes import AnimalRoutes, RacaRoutes
 
 
 load_dotenv('.env')
@@ -25,6 +25,7 @@ app.add_middleware(
 )
 
 app.include_router(AnimalRoutes.router)
+app.include_router(RacaRoutes.router)
 #app.add_middleware(DBSessionMiddleware, db_url=os.environ['DATABASE_URL'])
 
 @app.get("/")

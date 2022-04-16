@@ -1,27 +1,22 @@
 from pydantic import BaseModel, ValidationError, validator
 from typing import Optional
 
-class AnimalID(BaseModel):
-    id:int
-    nome: str
-    sexo: str
-    raca: str
-    idade: str
-    vacinacao: str = None
-    validacao_vacina: bool = None
-    id_usuario: int
 
-    class Config:
-        orm_mode = True
 class Animal(BaseModel):
     nome: str
-    especie: str
+    id_especie: int
     sexo: str
-    raca: str
+    id_raca: int
     idade: str
     vacinacao: str = None
     validacao_vacina: bool = None
     id_usuario: int
 
+    # @validator('nome')
+    # def nomeTemQueConterEspaco(cls, v):
+    #     if ' ' in v:
+    #         raise ValueError('001')
+    #     return v.title()
+        
     class Config:
         orm_mode = True

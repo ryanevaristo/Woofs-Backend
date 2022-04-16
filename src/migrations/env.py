@@ -33,7 +33,8 @@ from base import Base
 from models.Localidade import Localidade
 from models.Usuario import Usuario
 from models.Animal import Animal
-
+from models.Especie import Especie
+from models.Raca import Raca
 
 target_metadata = Base.metadata
 
