@@ -28,6 +28,9 @@ if config.config_file_name is not None:
     
 from models.Localidade import Localidade
 from models.Usuario import Usuario
+from models.Especie import Especie
+from models.Raca import Raca
+from models.Animal import Animal
 
 # add your model's MetaData object here
 # for 'autogenerate' support

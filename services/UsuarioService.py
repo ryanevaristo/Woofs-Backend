@@ -6,9 +6,11 @@ from sqlalchemy.future import select
 #from service import ServiceInterface
 from models.Usuario import Usuario as ModelUsuario
 from schema.UsuarioSchema import Usuario as SchemaUsuario
+
 class Usuario():
     def __init__(self, db: Session):
         self.db = db
+
     async def criar(self, usuario: SchemaUsuario):
         db_usuario = ModelUsuario(nome=usuario.nome,
                                 email=usuario.email,
