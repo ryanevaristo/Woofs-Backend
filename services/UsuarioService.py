@@ -18,7 +18,10 @@ class Usuario():
                         
                     )
         self.db.add(db_usuario)
-        await self.db.flush()
+        self.db.commit()
+        self.db.refresh(db_usuario)
+
+        return db_usuario
 
     async def atualizar(self,  usuario: SchemaUsuario, id: int):
         usuarioAtualizar = (
@@ -45,3 +48,7 @@ class Usuario():
     async def remover(self, id: int):
         query = delete(ModelUsuario).where(ModelUsuario.id == id)
         await self.db.execute(query)
+
+    async def obter_email(self, email: str):
+        query = select(ModelUsuario).where(ModelUsuario.email == email)
+        return await self.db.execute(query)

@@ -9,3 +9,13 @@ class Usuario(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+
+
+class LoginData(BaseModel):
+    email: str
+    senha: str
+
+    class Config:
+        orm_mode = True

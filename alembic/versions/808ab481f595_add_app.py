@@ -30,7 +30,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('nome', sa.String(length=50), nullable=False),
     sa.Column('email', sa.String(length=55), nullable=False),
-    sa.Column('senha', sa.String(length=50), nullable=False),
+    sa.Column('senha', sa.String(length=200), nullable=False),
     sa.Column('idade', sa.String(length=2), nullable=False),
     sa.Column('id_localidade', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['id_localidade'], ['Localidade.id'], ),

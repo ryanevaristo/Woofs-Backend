@@ -11,8 +11,8 @@ class Usuario(Base):
 
     id = Column(Integer, primary_key = True, autoincrement = True,  index = True)
     nome = Column(String(50), nullable = False)
-    email = Column(String(55), nullable = False, unique = True)
-    senha = Column(String(50), nullable = False)
+    email = Column(String(55), nullable = False)
+    senha = Column(String(200), nullable = False)
     idade = Column(String(2), nullable = False)
     
     id_localidade = Column(Integer, ForeignKey('Localidade.id'))
