@@ -9,7 +9,8 @@ from sqlalchemy.exc import SQLAlchemyError
 from dotenv import dotenv_values
 config = dotenv_values('.env')
 #SQLALCHEMY_DATABASE_URL = config['DATABASE_UR']
-engine = create_async_engine("postgresql+asyncpg://postgres:admin@localhost/postgres", future=True, echo=True)
+#engine = create_async_engine("postgresql+asyncpg://postgres:admin@localhost/postgres", future=True, echo=True)
+engine = create_async_engine("postgresql+asyncpg://hqlbqoamjvzggz:1ca892eeeb649dcd089eb18f2dd5c156f189da45232de14556cc4730f6f6a907@ec2-52-200-215-149.compute-1.amazonaws.com:5432/d8tft2pm3p4ua0", future=True, echo=True)
 #SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine, class_=AsyncSession)
 Base = declarative_base()
 

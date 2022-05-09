@@ -53,4 +53,4 @@ class Usuario():
 
     async def obter_email(self, email: str):
         query = select(ModelUsuario).where(ModelUsuario.email == email)
-        return await self.db.execute(query)
+        return self.db.execute(query)
